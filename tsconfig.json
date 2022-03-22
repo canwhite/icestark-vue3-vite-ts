@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "useDefineForClassFields": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "outDir": "./",
+    "paths": {
+      "@/*": ["src/*"],
+    },
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": ["dom", "dom.iterable", "esnext", "ESNext.Intl", "ES2018.Intl"],
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*","typing.d.ts"],
+  "exclude": ["node_modules", "dist"],
+}
