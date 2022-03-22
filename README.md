@@ -7,3 +7,32 @@ base project , icestark + vue3 + ts + vite + pinia +vueuse
 yarn install
 yarn dev
 ```
+
+
+## des
+
+> 整体框架基于微服务框架icestack，方便项目变大时候的边界问题的处理  
+> 语言做了ts和js的兼容配置，考虑安全性，建议ts  
+> 状态管理使用了相当于vuex5的pinia，心智成本更低    
+> vue3和vue2语法兼容  
+> 打包 基于vite，已配置  
+> ui框架基于element  
+
+todo：需要对齐
+
+## how to use
+
+1. about 【icestack】  
+[canwhite/qc-icestark-use](https://github.com/canwhite/qc-icestark-use)
+2. about 【pinia】    
+--src/pages/about/index.vue  
+--src/pages/App.vue 
+3. about 【setup + ts】  
+--src/pages/test/index.vue
+4. about 【request】
+--src/libs/useRequst
+
+
+## Online
+
+https://icestark-framework-vue3-x.vercel.app/
