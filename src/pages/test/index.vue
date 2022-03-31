@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import  useRequest from '@/libs/useRequest'
-import { onMounted, ref,reactive,watch,computed ,nextTick,onBeforeMount} from 'vue';
+import { onMounted, ref,reactive,watch,computed ,nextTick,onBeforeMount,watchEffect} from 'vue';
 import List from '@/components/List.vue'
 
 type DataType = {
@@ -20,13 +20,33 @@ const data = reactive<DataType>({
 const createRef = ref(null);
 
 //watch
-watch(()=> test, (newValue, oldValue) => {
+watch(test, (newValue, oldValue) => {
   //主要是使用new值，来撬动其它值
-  console.log("newValue",newValue)
+  console.log("watch test",newValue)
 },{
   immediate: true, // 绑定时加载
 }
 )
+
+watch(data, (pv, nv) => {
+  //主要是使用new值，来撬动其它值
+  console.log("watch ref pv",pv.test)
+},{
+  immediate: true, // 绑定时加载
+}
+)
+//watchEffect如果监听ref的时候，直接是ref.value
+//watch话最佳实践应该是直接对应ref
+//watchEffect可以细化，watch直接放最外层就可以了
+watchEffect(() => {
+    test.value,
+    data.test,
+    console.log("test.value",test.value);
+    console.log("data.text",data.test);
+})
+
+test.value == "780"
+data.test = "340";
 
 //computed取代filter
 const testComputed = computed(() => {

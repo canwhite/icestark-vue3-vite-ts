@@ -9,8 +9,8 @@ const vue = createApp(App as any);
 const pinia = createPinia()
 //持久化处理
 pinia.use(piniaPluginPersist)
-vue.use(router);
 vue.use(pinia);
+vue.use(router);
 // @ts-ignore
 vue.use(ElementPlus);
 
