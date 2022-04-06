@@ -49,6 +49,7 @@ test.value == "780"
 data.test = "340";
 
 //computed取代filter
+//这种对现有直进行变化缓存，返回一个新值，应该是最常用的
 const testComputed = computed(() => {
   if(test.value == "123") return "456";
 })

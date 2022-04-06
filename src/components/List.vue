@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 //--基于js的使用
 /* defineProps({ // 非ts专有声明
   list: {
-    default: [] as strong
+    default: [] as 
   }
 }) */
 
