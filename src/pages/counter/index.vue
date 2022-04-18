@@ -12,6 +12,10 @@
 <script>
 import {useCounterStore} from "@/store/counter"
 import {mapStores,mapState,mapActions} from "pinia"
+import {useRoute} from "vue-router"
+
+import mstate from "@/store/state"
+
 export default {
   computed:{
     ...mapStores(useCounterStore),
@@ -20,7 +24,18 @@ export default {
   },
   methods:{
     ...mapActions(useCounterStore,["increment","subtraction","reset"])
-  }
+  },
+  mounted() {
+    //原始方法
+    console.log("----",this.$route.query);
+
+    //新方法
+    const route = useRoute();
+    console.log("route",route.query);
+    console.log("state",mstate.hello)//全局一致
+    
+  },
+
 }
 </script>
 

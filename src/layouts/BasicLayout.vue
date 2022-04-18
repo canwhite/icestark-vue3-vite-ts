@@ -38,9 +38,9 @@ const handleSelect = (key: string) => {
         </template>
 
       </el-menu-item>
-      <el-menu-item index="/about">
+      <el-menu-item index="/counter">
         <template #title>
-          <span>About</span>
+          <span>Counter</span>
         </template>
       </el-menu-item>
 

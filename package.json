@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "icestark+vue3+ts+vite",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^0.2.4",
     "@ice/stark": "^2.6.1",
-    "@vueuse/core": "^8.1.2",
-    "@vueuse/integrations": "^8.1.2",
+    "@vueuse/core": "*",
+    "@vueuse/integrations": "*",
     "element-plus": "^1.2.0-beta.6",
     "pinia": "^2.0.12",
     "pinia-plugin-persist": "^1.0.0",

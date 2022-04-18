@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory,createWebHashHistory} from 'vue-router';
 import Home from '@/pages/home/index.vue';
-import About from '@/pages/about/index.vue';
+import Counter from '@/pages/counter/index.vue';
 import Login from '@/pages/Login.vue';
 import NotFound from '@/pages/notFound/index.vue';
+import { useStorage } from '@vueuse/core';
 // add router config by zack
 // webapck支持
 // const files = require.context('./modules', true, /\.js$/)
@@ -33,9 +34,9 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About,
+      path: '/counter',
+      name: 'counter',
+      component:Counter,
     },
     {
       path: '/login',

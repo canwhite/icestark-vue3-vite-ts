@@ -3,6 +3,9 @@
 import  useRequest from '@/libs/useRequest'
 import { onMounted, ref,reactive,watch,computed ,nextTick,onBeforeMount,watchEffect} from 'vue';
 import List from '@/components/List.vue'
+import Layout from "@/components/Layout.vue"
+import mstate from "@/store/state"
+
 
 type DataType = {
   test:string,
@@ -35,12 +38,12 @@ watch(data, (pv, nv) => {
   immediate: true, // 绑定时加载
 }
 )
-//watchEffect如果监听ref的时候，直接是ref.value
-//watch话最佳实践应该是直接对应ref
-//watchEffect可以细化，watch直接放最外层就可以了
+
+
+//建议使用watchEffect和computed
 watchEffect(() => {
-    test.value,
-    data.test,
+    test.value,// 对test.value进行监听
+    data.test, // 可以处理到对应属性
     console.log("test.value",test.value);
     console.log("data.text",data.test);
 })
@@ -48,8 +51,7 @@ watchEffect(() => {
 test.value == "780"
 data.test = "340";
 
-//computed取代filter
-//这种对现有直进行变化缓存，返回一个新值，应该是最常用的
+
 const testComputed = computed(() => {
   if(test.value == "123") return "456";
 })
@@ -78,7 +80,13 @@ onMounted(async () => {
     //给原始和引用确定值
     test.value = "123";
     data.test = "789";
-  
+
+    // 异步也不影响
+    setTimeout(() => {
+       mstate.hello = "456";
+    }, 1000);
+
+      
 })
 
 function getData(params:any) {
@@ -86,6 +94,7 @@ function getData(params:any) {
   // console.log("--createRef--",createRef.value.count);
 }
 
+//直接setup 语法糖里边不需要return
 </script>
 
 <template>
@@ -94,6 +103,17 @@ function getData(params:any) {
     <!-- props传值的时候不需要双引号 -->
     <p> 
       <List  :list = data.list @send = getData ref = createRef /> 
+    </p>
+    <p>
+      <Layout>
+        <!-- 用template操作，然后v-slot -->
+        <template v-slot:header>
+          <h1>Here might be a page title</h1>
+        </template>
+        <!-- 默认的不需要template -->
+        <p>A paragraph for the main content.</p>
+        <p>And another one.</p>
+      </Layout>
     </p>
   </div>
 </template>
