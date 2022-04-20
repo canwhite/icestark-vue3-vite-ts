@@ -1,7 +1,16 @@
 <script lang="ts" setup>
 
 import  useRequest from '@/libs/useRequest'
-import { onMounted, ref,reactive,watch,computed ,nextTick,onBeforeMount,watchEffect} from 'vue';
+import { 
+  onMounted,
+  ref,
+  reactive,
+  watch,
+  computed,
+  nextTick,
+  onBeforeMount,
+  watchEffect
+} from 'vue';
 import List from '@/components/List.vue'
 import Layout from "@/components/Layout.vue"
 import mstate from "@/store/state"
@@ -11,6 +20,10 @@ type DataType = {
   test:string,
   list?:string[]
 } 
+
+/*--------------------------
+原始值和引用值的一些初始化
+---------------------------*/
 //ref指定原始值,.value赋值，test取值
 const  test = ref<string>("");
 
@@ -22,7 +35,7 @@ const data = reactive<DataType>({
 
 const createRef = ref(null);
 
-//watch
+//不建议用watch
 watch(test, (newValue, oldValue) => {
   //主要是使用new值，来撬动其它值
   console.log("watch test",newValue)
@@ -40,7 +53,9 @@ watch(data, (pv, nv) => {
 )
 
 
-//建议使用watchEffect和computed
+/*---------------------------
+watchEffect和computed的一些总结
+----------------------------*/
 watchEffect(() => {
     test.value,// 对test.value进行监听
     data.test, // 可以处理到对应属性
@@ -51,11 +66,14 @@ watchEffect(() => {
 test.value == "780"
 data.test = "340";
 
-
+//对一个值进行增值操作，缓存，一般直接用它的getter就够了
 const testComputed = computed(() => {
   if(test.value == "123") return "456";
 })
 
+/*----------------------------
+nextTick和之前的用法差不多
+-----------------------------*/
 //nextTick
 nextTick(()=>{
   //pass
