@@ -11,19 +11,19 @@ interface Props {
 param1:defineProps 执行类型，
 param2:对象里边初始化
 */
-const props = withDefaults(defineProps<Props>(), {
+/* const props = withDefaults(defineProps<Props>(), {
     //初始化
     list:()=>[]
-}) 
+})  */
 
 
-//--基于js的使用
-/* defineProps({ // 非ts专有声明
-  list: {
-    default: [] as 
+//--基于js的使用,ts也可以用上，这样可以和下边的defineProps相对统一
+const props = defineProps({
+  list:{
+    type:Array,
+    default:()=>[]
   }
-}) */
-
+})
     
 /*
 defineEmits

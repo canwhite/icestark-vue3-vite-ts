@@ -4,10 +4,23 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const innerJump = () => {
-  //相当于get的方法
+
+  /*----------------------
+  关于vue2和vue3路由的一些总结
+  -----------------------*/
+
   router.push({path:"/counter",query:{
     userId:"123"
   }})
+  /*
+    获取有两种方法
+    1.vue2原始写法
+    console.log("----",this.$route.query);
+
+    2.用钩子的方法
+    const route = useRoute();
+    console.log("route",route.query);
+  */
 };
 
 const outerJump = () => {
