@@ -36,3 +36,42 @@ todo：需要对齐
 ## Online
 
 https://icestark-framework-vue3-x.vercel.app/
+
+
+
+### tailwind的配置
+```
+1.装包
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+--
+generate both tailwind.config.js and postcss.config.js.
+
+
+2.配置tailwind.config.js
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+3.main同级建一个index.css
+放上
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+4.在main中引入
+import './index.css'
+
+
+5.使用
+
+
+```

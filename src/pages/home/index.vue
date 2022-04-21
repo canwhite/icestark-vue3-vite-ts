@@ -35,6 +35,10 @@ const outerJump = () => {
 
     <p><el-link type="primary" @click="innerJump">Counter</el-link></p>
     <p><el-link type="primary" @click="outerJump">Seller</el-link></p>
+
+    <h1 class="text-3xl font-bold underline">
+        Hello world!
+    </h1>
   </div>
 </template>
 

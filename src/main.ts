@@ -5,6 +5,7 @@ import router from '@/router/index';
 import 'element-plus/dist/index.css';
 import { createPinia } from 'pinia';
 import piniaPluginPersist from 'pinia-plugin-persist'
+import "./index.css"
 const vue = createApp(App as any);
 const pinia = createPinia()
 //持久化处理
