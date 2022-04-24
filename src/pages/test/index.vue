@@ -35,27 +35,8 @@ const data = reactive<DataType>({
 
 const createRef = ref(null);
 
-//不建议用watch
-watch(test, (newValue, oldValue) => {
-  //主要是使用new值，来撬动其它值
-  console.log("watch test",newValue)
-},{
-  immediate: true, // 绑定时加载
-}
-)
-
-watch(data, (pv, nv) => {
-  //主要是使用new值，来撬动其它值
-  console.log("watch ref pv",pv.test)
-},{
-  immediate: true, // 绑定时加载
-}
-)
-
-
-/*---------------------------
-watchEffect和computed的一些总结
-----------------------------*/
+//数据监听，在回调函数中确定监听对象
+//可以具体到reactive属性
 watchEffect(() => {
     test.value,// 对test.value进行监听
     data.test, // 可以处理到对应属性
@@ -66,7 +47,7 @@ watchEffect(() => {
 test.value == "780"
 data.test = "340";
 
-//对一个值进行增值操作，缓存，一般直接用它的getter就够了
+//computed取代filter，我们主要用get
 const testComputed = computed(() => {
   if(test.value == "123") return "456";
 })
@@ -75,44 +56,28 @@ const testComputed = computed(() => {
 nextTick和之前的用法差不多
 -----------------------------*/
 //nextTick
-nextTick(()=>{
-  //pass
+nextTick(()=>{}) //也可以主动调用刷新
 
-})
-
-onBeforeMount(() => {
-    data.list= ["123","456","789"]
-    // console.log("--list--",list.value)
-
-})
-
-
-//onMounted
 onMounted(async () => {
-    //请求test
-
+    //数据请求
     const { isFetching:loading, error, data:weather } = await useRequest("/getWeather.php").post({city:'北京'}).json();
-
-    console.log("--data--",weather);
-    console.log("loading",loading);
-    //给原始和引用确定值
-    test.value = "123";
-    data.test = "789";
-
-    // 异步也不影响
-    setTimeout(() => {
-       mstate.hello = "456";
-    }, 1000);
-
-      
+    console.log("--data--",weather); 
 })
 
-function getData(params:any) {
-  console.log("--params--",params);
-  // console.log("--createRef--",createRef.value.count);
-}
+
+//父子通信
+const getData = ref<number>(0)
 
 //直接setup 语法糖里边不需要return
+watchEffect(()=>{
+  getData.value,
+  console.log("123");
+  console.log("getdata",getData);
+
+})
+
+
+
 </script>
 
 <template>
@@ -120,8 +85,10 @@ function getData(params:any) {
     <p>{{testComputed}}-{{data.test}}</p>
     <!-- props传值的时候不需要双引号 -->
     <p> 
-      <List  :list = data.list @send = getData ref = createRef /> 
+      <!-- 这里v-modal取代了@update -->
+      <List  :list = [1,2,3,4]   v-model:send="getData" ref = createRef /> 
     </p>
+    <p>{{getData}}</p>
     <p>
       <Layout>
         <!-- 用template操作，然后v-slot -->

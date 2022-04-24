@@ -1,53 +1,29 @@
 <script lang = "ts" setup>
 import {toRefs,onMounted,ref} from 'vue'
 
-//--基于ts的使用
-// 采用ts专有声明，有默认值需要使用withDefaults，如果没有默认值，直接defineProps即可
+//defineProps，最终确定使用这种
+const props = defineProps<{
+  list?: string[]
+}>()
 
-interface Props {
-    list?: string[]
-}
-/*
-param1:defineProps 执行类型，
-param2:对象里边初始化
-*/
-/* const props = withDefaults(defineProps<Props>(), {
-    //初始化
-    list:()=>[]
-})  */
-
-
-//--基于js的使用,ts也可以用上，这样可以和下边的defineProps相对统一
-const props = defineProps({
-  list:{
-    type:Array,
-    default:()=>[]
-  }
-})
-    
 /*
 defineEmits
 接收方法名数组，然后返回emit方法
 后期调用和之前差不多
 */
-const emit= defineEmits(['send'])
-  
+const emits = defineEmits<{
+  (e: 'update:send', closed: boolean):void;
+}>();
+
 const clickThis = () => {
-  emit('send',2)
+  emits('update:send',2)
 }
 
-
-//expose，组件自己暴露属性
-/* const count = ref<number>(123456)
-defineExpose({
-  count
-}) */
-
 </script>
-
 
 <template>
   <h1>List Page</h1>
   <p v-for="(item,index) in list" :key="index"> {{item}}</p>
-  <div @click="clickThis">点我</div>
+  <div class="w-full ml-[10px] mr-[10px] flex justify-center items-center border-2" 
+    @click="clickThis">点我</div>
 </template>

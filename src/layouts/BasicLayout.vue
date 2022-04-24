@@ -33,7 +33,7 @@ const handleSelect = (key: string) => {
     >
       <el-menu-item index="/">
         <template #title>
-          <el-icon><location /></el-icon>
+          <!-- <el-icon><location /></el-icon> -->
           <span>Home</span>
         </template>
 
@@ -46,9 +46,9 @@ const handleSelect = (key: string) => {
 
       <el-sub-menu index="/test">
         <template #title>
-          <span>test</span>
+          <span>基础功能</span>
         </template>
-        <el-menu-item index="/test">test首页</el-menu-item>
+        <el-menu-item index="/test">应用</el-menu-item>
       </el-sub-menu>
 
       <el-sub-menu index="/seller">
