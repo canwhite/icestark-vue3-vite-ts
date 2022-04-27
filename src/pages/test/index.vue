@@ -28,6 +28,8 @@ type DataType = {
 const  test = ref<string>("");
 
 //reactive指定引用类型，直接取用属性
+//reactive在直接给整体重新赋值之后会丢失响应性，但是给属性赋值不会出现这样的问题
+//这一点ref没有问题
 const data = reactive<DataType>({
   test:"",
   list: []  
@@ -86,6 +88,7 @@ watchEffect(()=>{
     <!-- props传值的时候不需要双引号 -->
     <p> 
       <!-- 这里v-modal取代了@update -->
+      <!-- 如果是驼峰传值,会变成key-key1 ，但是子组件中接收还是驼峰 -->
       <List  :list = [1,2,3,4]   v-model:send="getData" ref = createRef /> 
     </p>
     <p>{{getData}}</p>
