@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+//这里setup本身也是一个生命钩子，相当于beforeCreate和created的结合
+//一些操作注意钩子顺序
 
 import  useRequest from '@/libs/useRequest'
 import { 
