@@ -16,7 +16,7 @@ const emits = defineEmits<{
 }>();
 
 const clickThis = () => {
-  emits('update:send',2)
+  emits('update:send',false)
 }
 
 </script>

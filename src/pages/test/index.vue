@@ -91,7 +91,7 @@ watchEffect(()=>{
     <p> 
       <!-- 这里v-modal取代了@update -->
       <!-- 如果是驼峰传值,会变成key-key1 ，但是子组件中接收还是驼峰 -->
-      <List  :list = [1,2,3,4]   v-model:send="getData" ref = createRef /> 
+      <List  :list = ["1","2","3","4"]   v-model:send="getData" ref = createRef /> 
     </p>
     <p>{{getData}}</p>
     <p>
